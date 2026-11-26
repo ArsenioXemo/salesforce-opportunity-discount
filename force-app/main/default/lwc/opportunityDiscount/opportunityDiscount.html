@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Opportunity discount">
+        <div class="slds-p-around_medium">
+            <lightning-input type="number" label="Discount (%)" min="0" max="100" step="0.01" required value={percent} onchange={handleChange}></lightning-input>
+            <lightning-button class="slds-m-top_small" label="Apply discount" variant="brand" onclick={apply} disabled={busy}></lightning-button>
+            <template lwc:if={busy}><lightning-spinner alternative-text="Applying discount" size="small"></lightning-spinner></template>
+            <p role="status" class="slds-m-top_small">{message}</p>
+        </div>
+    </lightning-card>
+</template>
