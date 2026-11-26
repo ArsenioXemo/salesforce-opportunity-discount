@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Discounted_Amount__c</fullName><label>Discounted Amount</label><formula>ROUND(Amount * (1 - Discount_Percent__c), 2)</formula><formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs><precision>18</precision><scale>2</scale><type>Currency</type></CustomField>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Discounted_Amount__c</fullName><label>Discounted Amount</label><formula>IF(ISBLANK(Amount), NULL, ROUND(Amount * (1 - BLANKVALUE(Discount_Percent__c, 0)), 2))</formula><formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs><scale>2</scale><type>Currency</type></CustomField>
