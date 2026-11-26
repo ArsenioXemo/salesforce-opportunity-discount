@@ -1,0 +1,7 @@
+.sf/
+.sfdx/
+node_modules/
+.env
+.env.*
+*.log
+coverage/
