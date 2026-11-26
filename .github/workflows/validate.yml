@@ -1,0 +1,25 @@
+name: Static validation
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  static-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Validate metadata and project JSON
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import xml.etree.ElementTree as ET
+          json.loads(pathlib.Path('sfdx-project.json').read_text())
+          files = list(pathlib.Path('force-app').rglob('*.xml'))
+          assert files, 'No metadata found'
+          for path in files:
+              ET.parse(path)
+          print(f'Parsed {len(files)} metadata files')
+          PY
