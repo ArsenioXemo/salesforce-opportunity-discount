@@ -7,7 +7,7 @@ public with sharing class OpportunityDiscountController {
         try {
             Opportunity record = [SELECT Id, Amount FROM Opportunity WHERE Id = :recordId WITH USER_MODE LIMIT 1 FOR UPDATE];
             Decimal total = OpportunityDiscountService.calculate(record.Amount, percent);
-            Opportunity change = new Opportunity(Id = record.Id, Discount_Percent__c = percent, Discounted_Amount__c = total);
+            Opportunity change = new Opportunity(Id = record.Id, Discount_Percent__c = percent);
             update as user change;
             return total;
         } catch (Exception e) {
